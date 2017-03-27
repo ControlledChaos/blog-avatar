@@ -1,9 +1,9 @@
 === BuddyPress Blog Avatar ===
-Contributors: anusharma,sbrajesh,buddydev
+Contributors: anusharma,sbrajesh,buddydev,raviousprime
 Tags: buddypress, blog, avatar
 Requires at least: BuddyPress 1.8
-Tested up to: BuddyPress 1.8.1
-Stable tag: 1.0
+Tested up to: BuddyPress 2.8.2
+Stable tag: 1.0.1
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
