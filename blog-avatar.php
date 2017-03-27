@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Blog Avatar
  * Plugin URI: https://buddydev.com/plugins/blog-avatar/
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: BuddyDev Team
  * Author URI: https://buddydev.com/
  * Description: Allow Site Admins to upload avatar for a blog
