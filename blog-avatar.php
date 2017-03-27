@@ -1,64 +1,70 @@
 <?php
-
-/*
+/**
  * Plugin Name: Blog Avatar
- * Plugin URI: http://buddydev.com/plugins/blog-avatar/
- * Version: 1.0
- * Author: Anu Sharma
- * Author URI: http://buddydev.com/members/anusharma/
- * Description: Allow Site Admins to upload avatar for a blog 
+ * Plugin URI: https://buddydev.com/plugins/blog-avatar/
+ * Version: 1.0.1
+ * Author: BuddyDev Team
+ * Author URI: https://buddydev.com/
+ * Description: Allow Site Admins to upload avatar for a blog
+ *
+ * @package blog-avatar
+ **/
+
+// exit if file access directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class BD_Blog_Avatar
  */
+class BD_Blog_Avatar {
+	/**
+	 * Holds class object
+	 *
+	 * @var static $instance holds class object,
+	 */
+	private static $instance = null;
+	/**
+	 * BD_Blog_Avatar constructor.
+	 */
+	private function __construct() {
+		add_action( 'bp_loaded', array( $this, 'load' ) );
+	}
+	/**
+	 * Function load neccesary plugins file.
+	 */
+	function load() {
 
+		$path = plugin_dir_path( __FILE__ );
 
-class BD_Blog_Avatar{
-    
-    private static $instance;
-    
-    
-    private function __construct() {
-  
-        add_action( 'bp_loaded', array( $this, 'load' ) );
-        
-    }
-    
-    function load(){
-        
-        $path = plugin_dir_path( __FILE__ );
-        
-        $files = array(
-                'hooks.php',
-                'functions.php',
-               // 'actions.php'
-                
-        );
-        
-        if( is_admin() )
-            $files[] = 'admin/admin.php';
-        
-        foreach ( $files as $file )
-            require_once $path . $file;
-        
-        
-        
-    }
-    
-     /**
-     * Get Instance
-     * 
-     * Use singlten patteren
-     * @return BD_Blog_Avatar
-     */
-    public static function get_instance() {
+		if ( ! bp_is_active( 'blogs' ) ) {
+			return;
+		}
 
-        if ( !isset( self::$instance ) )
-            self::$instance = new self();
-
-        return self::$instance;
-    }
-    
-  
-   
- }
+		$files = array(
+			'hooks.php',
+			'functions.php',
+		);
+		if ( is_admin() ) {
+			$files[] = 'admin/admin.php';
+		}
+		foreach ( $files as $file ) {
+			require_once $path . $file;
+		}
+	}
+	/**
+	 * Return Instance of class
+	 *
+	 * @return BD_Blog_Avatar
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+}
 
 BD_Blog_Avatar::get_instance();// Have a fun .....
 
